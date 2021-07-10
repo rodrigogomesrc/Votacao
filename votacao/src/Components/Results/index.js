@@ -1,6 +1,23 @@
 import React from 'react';
 
-function Results({options}) {
+const Results = ({options}) => {
+
+    const renderVotingResults = (options) => {
+        let totalCount = 0;
+        options.map(option => totalCount += option.count);
+        return(
+            options.map((option, index) => <p key={option.text}>{renderOptionResultText(totalCount, option, index)}</p>)
+        )
+    }
+    
+    const renderOptionResultText = (totalCount, option, index) => {
+        return `${index + 1} - ${option.text} - ${option.count} votes (${calculatePercentage(option.count, totalCount)}%)`;
+    }
+    
+    const calculatePercentage = (optionCount, totalCount) => {
+        return Math.round((optionCount / totalCount) * 100);
+    }
+    
     return (
         <div>
             <p>Results</p>
@@ -9,22 +26,6 @@ function Results({options}) {
             }
         </div>
     )
-}
-
-const renderVotingResults = (options) => {
-    let totalCount = 0;
-    options.map(option => totalCount += option.count);
-    return(
-        options.map(option => <p key={option.text}>{renderOptionResultText(totalCount, option)}</p>)
-    )
-}
-
-const renderOptionResultText = (totalCount, option) => {
-    return `${option.text} - ${option.count} votes (${calculatePercentage(option.count, totalCount)}%)`;
-}
-
-const calculatePercentage = (optionCount, totalCount) => {
-    return Math.round((optionCount / totalCount) * 100);
 }
 
 export default Results

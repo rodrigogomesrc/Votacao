@@ -10,7 +10,8 @@ export default {
             options: ['open', 'closed'],
             control: {type: 'radio'}
         },
-        title: ""
+        title: "",
+        options: []
     }
 };
 
@@ -20,5 +21,10 @@ export const card = Template.bind();
 
 card.args = {
     state : "open",
-    title: "Você concorda?"
+    title: "Você concorda?",
+    options : [
+        {text: "Sim", count: 12}, 
+        {text: "Talvez", count: 8}, 
+        {text: "Não", count: 10}
+      ]
 }

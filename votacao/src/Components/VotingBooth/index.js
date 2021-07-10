@@ -1,9 +1,13 @@
 import React from 'react'
 
-function VotingBooth() {
+const VotingBooth = ({options, vote}) => {
     return (
         <div>
-            Voting Booth
+            {
+                options.map((option) => (
+                    <button key={option.text} onClick={() => vote(option.text, options)}>{option.text}</button>)
+                )
+            }
         </div>
     )
 }

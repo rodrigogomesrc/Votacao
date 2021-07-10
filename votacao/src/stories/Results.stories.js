@@ -9,7 +9,6 @@ export default {
     }
 };
 
-
 const Template = (args) => <Results {...args}/>
 
 export const results = Template.bind();
