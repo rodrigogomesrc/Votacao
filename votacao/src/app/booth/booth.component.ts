@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-booth',
@@ -7,9 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoothComponent implements OnInit {
 
-  constructor() { }
+  @Input() 
+  options : any[];
 
-  ngOnInit(): void {
+  @Output()
+  vote: EventEmitter<string> = new EventEmitter<string>();
+
+  constructor() {
+    this.options = [];
+
   }
 
+  ngOnInit(): void {
+   
+  }
+
+  onClick = (selectedOption: string) =>{
+    this.vote.emit(selectedOption);
+    /*
+    this.options.forEach((option) => {
+      if(option.text === selectedOption){
+        option.count++;
+      }
+    })
+    */
+  }
 }

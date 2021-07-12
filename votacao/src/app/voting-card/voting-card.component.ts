@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-voting-card',
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VotingCardComponent implements OnInit {
 
-  constructor() { }
+  @Input() 
+  title = "";
+
+  @Input() 
+  state = "";
+
+  @Input() 
+  options : any[];
+
+  constructor() { 
+    this.options = [];
+  }
 
   ngOnInit(): void {
+  }
+
+  onVote(selectedOption: string): void {
+    console.log("foi votado em...");
+    console.log(selectedOption);
+    this.options.forEach((option) => {
+      if(option.text === selectedOption){
+        option.count++;
+      }
+    })
+    this.state = "closed";
   }
 
 }

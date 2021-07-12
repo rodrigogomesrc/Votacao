@@ -6,7 +6,7 @@ export default {
   title: 'Booth',
   component: BoothComponent,
   argTypes: {
-    
+    options: []
   },
 } as Meta;
 
@@ -14,7 +14,12 @@ const Template: Story<BoothComponent> = (args: BoothComponent) => ({
   props: args,
 });
 
-export const Booth = Template.bind({});
-Booth.args = {
-  
+export const Booth1 = Template.bind({});
+Booth1.args = {
+    options: [
+        {text: "Sim", count: 3},
+        {text: "Não", count: 8},
+        {text: "Talvez", count: 12}
+     ],
 };
+

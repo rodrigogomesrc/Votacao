@@ -13,7 +13,7 @@ export class ResultsComponent implements OnInit {
   results : string[];
 
   constructor() { 
-    this.results = []
+    this.results = [];
     this.options = [];
 
   }
