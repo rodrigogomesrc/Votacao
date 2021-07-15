@@ -22,14 +22,7 @@ export class BoothComponent implements OnInit {
    
   }
 
-  onClick = (selectedOption: string) =>{
+  onClick = (selectedOption: string) => {
     this.vote.emit(selectedOption);
-    /*
-    this.options.forEach((option) => {
-      if(option.text === selectedOption){
-        option.count++;
-      }
-    })
-    */
   }
 }
