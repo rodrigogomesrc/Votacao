@@ -26,7 +26,6 @@
             countVotes(){
                 this.options.forEach(option => {
                     this.totalVotes += option.count;
-                    console.log(this.totalVotes);
                 });
             },
             calculatePercentage(optionCount){
