@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h3>{{this.title}}</h3>
         <booth v-if="localState==='open'" :options="localOptions" v-on:vote="handleVote($event)"/>
         <results v-if="localState!=='open'" :options="localOptions"/>
     </div>
@@ -13,7 +14,8 @@
         name: 'voting-card',
         props: {
             options: [],
-            state: ""
+            state: "",
+            title: ""
         },
         components: {
             Results,
