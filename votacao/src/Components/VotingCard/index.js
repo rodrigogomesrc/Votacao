@@ -1,8 +1,10 @@
-import React from 'react';
+import { React, useState } from 'react';
 import VotingBooth from '../VotingBooth';
 import Results from '../Results';
 
 const VotingCard = ({state, title, options}) => {
+
+    const [localState, setLocalState] = useState(state);
 
     const onVote = (votedOption, options) => {
         options.forEach(option => {
@@ -10,18 +12,13 @@ const VotingCard = ({state, title, options}) => {
                 option.count++;
             }
         });
-        closeVoting()
+        setLocalState("closed");
     }
-
-    const closeVoting = () => {
-        state = "closed";
-    }
-
     return (
         <div>
             <p>{title}</p>
             {
-            state === "open" ? <VotingBooth options={options} vote={onVote}/> : <Results options={options}/>
+            localState === "open"? <VotingBooth options={options} vote={onVote}/> : <Results options={options}/>
             }
            
         </div>

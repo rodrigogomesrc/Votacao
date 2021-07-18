@@ -11,7 +11,7 @@ const Results = ({options}) => {
     }
     
     const renderOptionResultText = (totalCount, option, index) => {
-        return `${index + 1} - ${option.text} - ${option.count} votes (${calculatePercentage(option.count, totalCount)}%)`;
+        return `${index + 1}. ${option.text} - ${option.count} votes (${calculatePercentage(option.count, totalCount)}%)`;
     }
     
     const calculatePercentage = (optionCount, totalCount) => {
@@ -20,7 +20,6 @@ const Results = ({options}) => {
     
     return (
         <div>
-            <p>Results</p>
             {
                 renderVotingResults(options)
             }
