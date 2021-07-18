@@ -26,3 +26,27 @@
     ],
   }}
 />
+
+<Story
+  name="Results2"
+  args={{
+    options: [
+        {text: "Sim", count: 12},
+        {text: "Não", count: 4},
+    ],
+  }}
+/>
+
+<Story
+  name="Results3"
+  args={{
+    options: [
+        {text: "Opção A", count: 12},
+        {text: "Opção B", count: 4},
+        {text: "Opção C", count: 5},
+        {text: "Opção D", count: 7},
+    ],
+  }}
+/>
+
+
