@@ -1,23 +1,23 @@
 <script>
     import { Meta, Template, Story } from "@storybook/addon-svelte-csf";
-    import Results from "../Components/Results.svelte";
+    import Booth from "../Components/Booth.svelte";
 
 </script>
   
 <Meta
-  title="Results"
-  component={Results}
+  title="Booth"
+  component={Booth}
   argTypes={{
     options: {Control: "array"}
   }}
 />
 
 <Template let:args>
-    <Results {...args} />
+    <Booth {...args} />
 </Template>
 
 <Story
-  name="Results1"
+  name="Booth1"
   args={{
     options: [
         {text: "Sim", count: 3},
