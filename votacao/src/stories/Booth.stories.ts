@@ -23,3 +23,11 @@ Booth1.args = {
      ],
 };
 
+export const Booth2 = Template.bind({});
+Booth2.args = {
+    options: [
+        {text: "Sim", count: 3},
+        {text: "Não", count: 8},
+     ],
+};
+

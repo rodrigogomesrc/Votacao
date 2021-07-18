@@ -15,7 +15,6 @@ export class ResultsComponent implements OnInit {
   constructor() { 
     this.results = [];
     this.options = [];
-
   }
 
   ngOnInit(): void {

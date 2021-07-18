@@ -26,8 +26,8 @@ const Template: Story<VotingCardComponent> = (args: VotingCardComponent) => ({
   props: args,
 });
 
-export const Voting = Template.bind({});
-Voting.args = {
+export const Voting1 = Template.bind({});
+Voting1.args = {
   title: "Vocẽ concorda?",
   state: "open",
   options: [
@@ -36,4 +36,14 @@ Voting.args = {
     {text: "Talvez", count: 12},
  ]
 
+};
+
+export const Voting2 = Template.bind({});
+Voting2.args = {
+  title: "Segue o relator?",
+  state: "open",
+  options: [
+    {text: "Sim", count: 3},
+    {text: "Não", count: 8},
+ ]
 };

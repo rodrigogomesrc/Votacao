@@ -23,3 +23,11 @@ Results1.args = {
    ],
 };
 
+export const Results2 = Template.bind({});
+Results2.args = {
+  options: [
+      {text: "Sim", count: 3},
+      {text: "Não", count: 8},
+   ],
+};
+
