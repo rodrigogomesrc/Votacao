@@ -3,6 +3,8 @@ Sistema de votação usando React, Vue, Angular e Svelte
 
 Projeto da Disciplina Tópicos de Engenharia de Software VI - DIM0536
 
+Cada branch contém o código do projeto de cada Framework
+
 ## Storybooks
 
 - [React](https://60f47b579dae4400391e3567-hhgylesvfi.chromatic.com/)
