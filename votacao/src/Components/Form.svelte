@@ -11,12 +11,18 @@
     function onSubmit(e) {
         errorMessage = "";
         const formData = new FormData(e.target);
-        //let allOptions = [];
-        //let title;
-      
+        let areErrors = false;
+       
         for (let field of formData) {
             const [key, value] = field;
-            checkErrors(value.toString());
+            const erro = checkErrors(value.toString());
+            if(erro){
+                areErrors = true;
+                formOptions.update(() => {
+                    return [];
+                })
+                break;
+            }
             if(key==="title"){
                 formTitle.update(currentTitle => {
                     return value;
@@ -27,8 +33,10 @@
                 formOptions.update(currentOptions => {
                     return [option, ...currentOptions];
                 })
-                //allOptions.push(option);
             }
+           
+        }
+        if(!areErrors){
             isSubmited = true;
         }
     }
@@ -47,10 +55,13 @@
 
         if(field.trim() === ''){
             errorMessage="Campos não podem estar em branco!";
+            return true;
 
         } else if(field.length < 4){
             errorMessage="Campos não podem ter menos do que 4 caracteres!";
+            return true;
         }
+        return false;
     }
 
    
@@ -79,7 +90,7 @@
         <button class="formInput" type="button" on:click={addOption}>+</button>
         <button class="formInput" type="button" on:click={removeLastOption}>Remover Último</button>
         <p class="error">{errorMessage}</p>
-        <input class="formInput" type="submit" value="Submit" id="btnsubmit">
+        <input class="formInput" type="submit" value="Cadastrar" id="btnsubmit">
     </form>
 </div>
 {/if}
