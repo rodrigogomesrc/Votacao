@@ -1,6 +1,7 @@
 <script>
     import Results from './Results.svelte';
     import Booth from './Booth.svelte';
+    import { formOptions, formTitle } from '../stores/formData';
 
     export let title = "";
     export let options = [];
