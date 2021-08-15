@@ -1,22 +1,26 @@
 <script>
 
-    import { formOptions } from '../stores/formData';
+    import { formOptions, formTitle } from '../stores/formData';
+    import VotingCard from '../Components/VotingCard.svelte';
 
     let form;
     let options = 2;
     let errorMessage = "";
+    let isSubmited = false;
 
     function onSubmit(e) {
         errorMessage = "";
         const formData = new FormData(e.target);
         //let allOptions = [];
-        let title;
+        //let title;
       
         for (let field of formData) {
             const [key, value] = field;
             checkErrors(value.toString());
             if(key==="title"){
-                title = value;
+                formTitle.update(currentTitle => {
+                    return value;
+                })
             }
             else if(key.startsWith("option")){
                 let option = {text: value, count: 0}
@@ -25,6 +29,7 @@
                 })
                 //allOptions.push(option);
             }
+            isSubmited = true;
         }
     }
 
@@ -59,6 +64,8 @@
 
 </script>
 
+{#if !isSubmited}
+
 <div>
     <h3>Cadastre Título e Perguntas: </h3>
     <form on:submit|preventDefault={onSubmit} bind:this={form} id="optionsForm" >
@@ -75,6 +82,10 @@
         <input class="formInput" type="submit" value="Submit" id="btnsubmit">
     </form>
 </div>
+{/if}
+{#if isSubmited}
+    <VotingCard/>
+{/if}
 
 <style>
 

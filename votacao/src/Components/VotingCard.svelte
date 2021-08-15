@@ -2,32 +2,30 @@
     import Results from './Results.svelte';
     import Booth from './Booth.svelte';
     import { formOptions, formTitle } from '../stores/formData';
+    import { votingState } from '../stores/states';
 
-    export let title = "";
-    export let options = [];
-    export let state = "";
+    let state;
+    let title;
+    let options;
 
-    const onVote = (data) => {
-        countVote(data.detail);
-        state = "closed"
-    }
+    formTitle.subscribe(savedTitle => {
+        title = savedTitle;
+    })
 
-    const countVote = (vote) => {
-        let localOptions = [...options];
-        localOptions.forEach(option => {
-            if(option.text === vote){
-                option.count++;
-            }
-        })
-        options = localOptions;
-    }
+    votingState.subscribe(savedState => {
+        state = savedState;
+    })
+
+    formOptions.subscribe(savedOptions => {
+        options = savedOptions;
+    })
 
 </script>
 
 <h3>{title}</h3>
 {#if state === "open"}
-<Booth options={options} on:vote={onVote}/>
+<Booth/>
 {/if}
 {#if state !== "open"}
-<Results options={options}/>
+<Results/>
 {/if}

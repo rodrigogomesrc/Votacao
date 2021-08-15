@@ -1,7 +1,13 @@
 <script>
     import { onMount } from 'svelte';
+    import { formOptions } from '../stores/formData';
 
-    export let options = [];
+    let localOptions;
+
+    formOptions.subscribe(data => {
+        localOptions = data;
+    }) 
+
     let results = [];
     let totalVotes = 0;
 
@@ -11,7 +17,7 @@
 
     const loadResults = () => {
         countVotes();
-        options.forEach((option, index) => {
+        localOptions.forEach((option, index) => {
             results = [...results, renderResult(option, index)]
         })
     }
@@ -25,7 +31,7 @@
     }
 
     const countVotes = () => {
-        options.forEach(option => {
+        localOptions.forEach(option => {
             totalVotes += option.count;
         });
     }

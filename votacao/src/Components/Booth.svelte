@@ -1,18 +1,35 @@
 <script>
-    import {createEventDispatcher} from 'svelte';
     import { formOptions } from '../stores/formData';
-    const dispatch = createEventDispatcher();
+    import { votingState } from '../stores/states';
 
-    export let options = []
-
-    let localOptions;
+    let options;
 
     formOptions.subscribe(data => {
-        localOptions = data;
+        options = data;
     })
+
+    const onVote = (data) => {
+        countVote(data);
+
+        votingState.update(currentOptions => {
+            return "closed";
+        })
+    }
+
+    const countVote = (vote) => {
+        let localOptions = [...options];
+        localOptions.forEach(option => {
+            if(option.text === vote){
+                option.count++;
+            }
+        })
+        formOptions.update(() => {
+            return localOptions;
+        })
+    }
 
 </script>
 
 {#each options as option}
-<button on:click={()=>dispatch('vote', option.text)}>{option.text}</button>
+<button on:click={()=>onVote(option.text)}>{option.text}</button>
 {/each}
