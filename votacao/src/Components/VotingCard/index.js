@@ -1,26 +1,18 @@
-import { React, useState } from 'react';
+import { React, useContext } from 'react';
 import VotingBooth from '../VotingBooth';
 import Results from '../Results';
+import { VotingContext } from '../../Contexts/votingContext';
 
-const VotingCard = ({state, title, options}) => {
+const VotingCard = () => {
 
-    const [localState, setLocalState] = useState(state);
+    const {votingStatus, formTitle} = useContext(VotingContext);
 
-    const onVote = (votedOption, options) => {
-        options.forEach(option => {
-            if(option.text === votedOption){
-                option.count++;
-            }
-        });
-        setLocalState("closed");
-    }
     return (
         <div>
-            <p>{title}</p>
+            <p>{formTitle}</p>
             {
-            localState === "open"? <VotingBooth options={options} vote={onVote}/> : <Results options={options}/>
+                votingStatus === "open"? <VotingBooth /> : <Results />
             }
-           
         </div>
     )
 }

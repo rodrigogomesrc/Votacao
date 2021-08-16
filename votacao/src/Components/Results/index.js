@@ -1,6 +1,9 @@
-import React from 'react';
+import { React, useContext } from 'react';
+import { VotingContext } from '../../Contexts/votingContext';
 
-const Results = ({options}) => {
+const Results = () => {
+
+    const {formOptions} = useContext(VotingContext);
 
     const renderVotingResults = (options) => {
         let totalCount = 0;
@@ -21,7 +24,7 @@ const Results = ({options}) => {
     return (
         <div>
             {
-                renderVotingResults(options)
+                renderVotingResults(formOptions)
             }
         </div>
     )
