@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DataServiceService } from '../data-service.service';
 
 @Component({
   selector: 'app-booth',
@@ -7,15 +8,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class BoothComponent implements OnInit {
 
-  @Input() 
-  options : any[];
-
-  @Output()
-  vote: EventEmitter<string> = new EventEmitter<string>();
+  options:{ text: string; count: number; }[] = [];
 
   constructor() {
-    this.options = [];
-
+    this.options = DataServiceService.formOptions;
   }
 
   ngOnInit(): void {
@@ -23,6 +19,13 @@ export class BoothComponent implements OnInit {
   }
 
   onClick = (selectedOption: string) => {
-    this.vote.emit(selectedOption);
+    let localOptions = [...this.options];
+    localOptions.forEach((option) => {
+      if(option.text === selectedOption){
+        option.count++;
+      }
+    })
+    DataServiceService.formOptions = localOptions;
+    DataServiceService.votingStatus = "closed";
   }
 }

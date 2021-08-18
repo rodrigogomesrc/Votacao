@@ -3,10 +3,17 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { VotingCardComponent } from "../app/voting-card/voting-card.component";
 import { ResultsComponent } from 'src/app/results/results.component';
 import { BoothComponent } from 'src/app/booth/booth.component';
+import { FormsModule } from '@angular/forms';
 
 export default {
   title: 'VotingCard',
   component: VotingCardComponent,
+  decorators: [
+    moduleMetadata({
+        declarations: [ResultsComponent, BoothComponent],
+        imports:[FormsModule]
+    })
+  ],
   argTypes: {
     options: [],
     title: [],
@@ -15,11 +22,6 @@ export default {
       control: {type: 'radio'}
   },
   },
-  decorators: [
-    moduleMetadata({
-        declarations: [VotingCardComponent, BoothComponent, ResultsComponent]
-    })
-],
 } as Meta;
 
 const Template: Story<VotingCardComponent> = (args: VotingCardComponent) => ({
@@ -28,22 +30,10 @@ const Template: Story<VotingCardComponent> = (args: VotingCardComponent) => ({
 
 export const Voting1 = Template.bind({});
 Voting1.args = {
-  title: "Vocẽ concorda?",
-  state: "open",
-  options: [
-    {text: "Sim", count: 3},
-    {text: "Não", count: 8},
-    {text: "Talvez", count: 12},
- ]
-
+  
 };
 
 export const Voting2 = Template.bind({});
 Voting2.args = {
-  title: "Segue o relator?",
-  state: "open",
-  options: [
-    {text: "Sim", count: 3},
-    {text: "Não", count: 8},
- ]
+  
 };

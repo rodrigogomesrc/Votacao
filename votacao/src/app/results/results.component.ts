@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DataServiceService } from '../data-service.service';
 
 @Component({
   selector: 'app-results',
@@ -7,14 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ResultsComponent implements OnInit {
 
-  @Input() 
-  options : any[];
+  options: { text: string; count: number; }[] = [];
 
   results : string[];
 
   constructor() { 
     this.results = [];
-    this.options = [];
+    this.options = DataServiceService.formOptions;
   }
 
   ngOnInit(): void {

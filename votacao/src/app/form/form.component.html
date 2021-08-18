@@ -1,0 +1,15 @@
+<div *ngIf = '!isSubmitted'>
+    <form id="questionsForm" (submit)="$event.preventDefault(); onSubmit($event)" novalidate>
+        <p>Título</p>
+        <input className="formInput" type="text" id="title" name="title"/>
+        <p>Perguntas</p>
+        <input className="formInput" type="text" id="option1" name="option1"/>
+        <input className="formInput" type="text" id="option2" name="option2"/>
+        <button className="formInput" type="button" (click)="addOption()" >+</button>
+        <button className="formInput" type="button" (click)="removeLastOption()">Remover Último</button>
+        <p [ngStyle]="{color:'red'}">{{errorMessage}}</p>
+        <input className="formInput" type="submit" value="Cadastrar" id="btnsubmit"/>
+    </form>
+</div>
+
+<app-voting-card *ngIf = 'isSubmitted'></app-voting-card>

@@ -1,3 +1,3 @@
 <p>{{title}}</p>
-<app-results [options]="options" *ngIf="state !== 'open'"></app-results>
-<app-booth [options]="options" *ngIf="state === 'open'" (vote)="onVote($event)"></app-booth>
+<app-results *ngIf="state !== 'open'"></app-results>
+<app-booth *ngIf="state === 'open'"></app-booth>
