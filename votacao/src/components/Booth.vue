@@ -7,15 +7,24 @@
 </template>
 
 <script>
+
+    import useStore from '../store';
+
     export default {
         name: 'booth',
-        props: {
-            options: []
-        },
+        data(){
+            return {
+                options: []
+            }
+        }, 
         methods: {
             vote(option){
                 this.$emit("vote", option);
-            }
+            },
+            
+        }, mounted(){
+            const store = useStore();
+            this.options = store.formOptions;
         }
     }
 </script>

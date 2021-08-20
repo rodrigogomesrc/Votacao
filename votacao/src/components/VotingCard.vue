@@ -1,30 +1,27 @@
 <template>
     <div>
-        <h3>{{this.title}}</h3>
-        <booth v-if="localState==='open'" :options="localOptions" v-on:vote="handleVote($event)"/>
-        <results v-if="localState!=='open'" :options="localOptions"/>
+        <h3>{{title}}</h3>
+        <booth v-if="localState==='open'"  v-on:vote="handleVote($event)"/>
+        <results v-if="localState!=='open'"/>
     </div>
 </template>
 
 <script>
     import Results from './Results.vue';
     import Booth from './Booth.vue';
-
+    import useStore, {setOptions, setVotingState} from '../store';
     export default {
         name: 'voting-card',
-        props: {
-            options: [],
-            state: "",
-            title: ""
-        },
         components: {
             Results,
             Booth
         },
         data(){
             return {
-               localState: this.state,
-               localOptions: this.options
+               localState: "open",
+               localOptions: [],
+               title: "",
+               store: null
             }
         }, 
         methods: {
@@ -35,15 +32,21 @@
                         op.count++;
                     }
                 });
+                setOptions(this.localOptions);
+                setVotingState("closed");
             }
         },
         watch: {
-            state: function(){
-                this.localState = this.state;
-            },
-            options: function(){
-                this.localOptions = this.options;
+            store: function(){
+                this.localOptions = this.store.formOptions;
+                this.title = this.store.formTitle;
             }
+        }, 
+        mounted(){
+            this.store = useStore();
+            this.localOptions = this.store.formOptions;
+            this.title = this.store.formTitle;
+            
         }
     }
 </script>

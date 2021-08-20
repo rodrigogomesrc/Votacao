@@ -5,15 +5,16 @@
 </template>
 
 <script>
+
+    import useStore from '../store';
+
     export default {
         name: 'results',
-        props: {
-            options: []
-        }, 
         data(){
             return {
                 totalVotes: 0,
-                results: []
+                results: [],
+                options: []
             }
         }, 
         methods: {
@@ -35,8 +36,10 @@
                 return `${index + 1}. ${option.text} - ${option.count} votes 
                 (${this.calculatePercentage(option.count)}%)`
             }
-
-        }, mounted(){
+        }, 
+        mounted(){
+            const store = useStore();
+            this.options = store.formOptions;
             this.loadResults();
         }
     }
